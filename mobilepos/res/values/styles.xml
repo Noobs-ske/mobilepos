@@ -1,5 +1,6 @@
 <resources>
 
     <style name="AppTheme" parent="android:Theme.Light" />
+    <style name="MobilePosTheme" parent="android:Theme.Light.NoTitleBar.Fullscreen"></style>
 
 </resources>
