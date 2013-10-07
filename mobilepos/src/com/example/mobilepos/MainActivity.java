@@ -8,13 +8,14 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends Activity {
-
+	
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-	
+		
 		// Button1
         final Button btn_Catalog = (Button) findViewById(R.id.button2);
         // Perform action on click

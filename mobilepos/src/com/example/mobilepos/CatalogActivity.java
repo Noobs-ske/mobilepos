@@ -71,7 +71,7 @@ public class CatalogActivity extends Activity{
         
         SimpleAdapter sAdap;
         sAdap = new SimpleAdapter(CatalogActivity.this, MebmerList, R.layout.activity_column,
-                new String[] {"MemberID", "Name", "Tel"}, new int[] {R.id.ColMemberID, R.id.ColName, R.id.ColTel});      
+                new String[] {"IMEI", "Model", "Price"}, new int[] {R.id.ColIMEI, R.id.ColModel, R.id.ColPrice});      
         lisView1.setAdapter(sAdap);
         registerForContextMenu(lisView1);
 	}
@@ -81,7 +81,7 @@ public class CatalogActivity extends Activity{
     		ContextMenuInfo menuInfo) {
     	//if (v.getId()==R.id.list) {
     	    AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
-    		menu.setHeaderTitle("Command for : " + MebmerList.get(info.position).get("Name").toString());
+    		menu.setHeaderTitle("Command for : " + MebmerList.get(info.position).get("Model").toString());
     		String[] menuItems = getResources().getStringArray(R.array.CmdMenu); 
     		for (int i = 0; i<menuItems.length; i++) {
     			menu.add(Menu.NONE, i, i, menuItems[i]);
@@ -95,7 +95,7 @@ public class CatalogActivity extends Activity{
 	    int menuItemIndex = item.getItemId();
 		String[] menuItems = getResources().getStringArray(R.array.CmdMenu);
 		String CmdName = menuItems[menuItemIndex];
-		String MemID = MebmerList.get(info.position).get("MemberID").toString();
+		String MemID = MebmerList.get(info.position).get("IMEI").toString();
 	    //String MemName = MebmerList.get(info.position).get("Name").toString();
 	    
 	    // Check Event Command
@@ -103,7 +103,7 @@ public class CatalogActivity extends Activity{
 
     	  	//Show on new activity	
         	Intent newActivity = new Intent(CatalogActivity.this,UpdateActivity.class);
-        	newActivity.putExtra("MemID", MebmerList.get(info.position).get("MemberID").toString());
+        	newActivity.putExtra("MemID", MebmerList.get(info.position).get("IMEI").toString());
         	startActivity(newActivity);
         
         // for Delete Command

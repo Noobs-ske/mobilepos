@@ -8,67 +8,69 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
 public class DBClass extends SQLiteOpenHelper {
 	
 
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
  
-    // Database Name
-    private static final String DATABASE_NAME = "mydatabase";
+    // Database Model
+    private static final String DATABASE_Model = "test2";
  
-    // Table Name
-    private static final String TABLE_MEMBER = "members";
+    // Table Model
+    private static final String TABLE_MEMBER = "mobile";
 
 	public DBClass(Context context) {
-		super(context, DATABASE_NAME, null, DATABASE_VERSION);
+		super(context, DATABASE_Model, null, DATABASE_VERSION);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
-		// Create Table Name
+		// Create Table Model
 	    db.execSQL("CREATE TABLE " + TABLE_MEMBER + 
-		          "(MemberID INTEGER PRIMARY KEY AUTOINCREMENT," +
-		          " Name TEXT(100)," +
-		          " Tel TEXT(100));");
+		          "(IMEI INTEGER PRIMARY KEY AUTOINCREMENT," +
+		          " Model TEXT(100)," +
+		          " Price TEXT(100));");
 	   
 	    Log.d("CREATE TABLE","Create Table Successfully.");
 	}
 	
 	// Insert Data
-	public long InsertData(String strMemberID, String strName, String strTel) {
+	public long InsertData(String strIMEI, String strModel, String strPrice) {
 		// TODO Auto-generated method stub
 		
 		 try {
 			SQLiteDatabase db;
      		db = this.getWritableDatabase(); // Write Data
      		
-     		/**
-     		 *  for API 11 and above
+     		
+     		//  for API 11 and above
 			SQLiteStatement insertCmd;
 			String strSQL = "INSERT INTO " + TABLE_MEMBER
-					+ "(MemberID,Name,Tel) VALUES (?,?,?)";
+					+ "(IMEI,Model,Price) VALUES (?,?,?)";
 			
 			insertCmd = db.compileStatement(strSQL);
-			insertCmd.bindString(1, strMemberID);
-			insertCmd.bindString(2, strName);
-			insertCmd.bindString(3, strTel);
+			insertCmd.bindString(1, strIMEI);
+			insertCmd.bindString(2, strModel);
+			insertCmd.bindString(3, strPrice);
 			return insertCmd.executeInsert();
-			*/
 			
+     		/*
 			ContentValues Val = new ContentValues();
-			Val.put("MemberID", strMemberID); 
-			Val.put("Name", strName);
-			Val.put("Tel", strTel);
+			Val.put("IMEI", strIMEI); 
+			Val.put("Model", strModel);
+			Val.put("Price", strPrice);
 
 			long rows = db.insert(TABLE_MEMBER, null, Val);
-
+			
 			db.close();
 			return rows; // return rows inserted.
+			*/
            
 		 } catch (Exception e) {
 		    return -1;
@@ -78,9 +80,8 @@ public class DBClass extends SQLiteOpenHelper {
 	
 	
 	// Select Data
-	public String[] SelectData(String strMemberID) {
+	public String[] SelectData(String strIMEI) {
 		// TODO Auto-generated method stub
-		
 		 try {
 			String arrData[] = null;	
 			
@@ -88,17 +89,17 @@ public class DBClass extends SQLiteOpenHelper {
 			 db = this.getReadableDatabase(); // Read Data
 				
 			 Cursor cursor = db.query(TABLE_MEMBER, new String[] { "*" }, 
-					 	"MemberID=?",
-			            new String[] { String.valueOf(strMemberID) }, null, null, null, null);
+					 	"IMEI=?",
+			            new String[] { String.valueOf(strIMEI) }, null, null, null, null);
 			 
 			 	if(cursor != null)
 			 	{
 					if (cursor.moveToFirst()) {
 						arrData = new String[cursor.getColumnCount()];
 						/***
-						 *  0 = MemberID
-						 *  1 = Name
-						 *  2 = Tel
+						 *  0 = IMEI
+						 *  1 = Model
+						 *  2 = Price
 						 */
 						arrData[0] = cursor.getString(0);
 						arrData[1] = cursor.getString(1);
@@ -117,7 +118,7 @@ public class DBClass extends SQLiteOpenHelper {
 	
 
 	// Delete Data
-	public long DeleteData(String strMemberID) {
+	public long DeleteData(String strIMEI) {
 		// TODO Auto-generated method stub
 		
 		 try {
@@ -125,25 +126,24 @@ public class DBClass extends SQLiteOpenHelper {
 			SQLiteDatabase db;
      		db = this.getWritableDatabase(); // Write Data
      		
-     		/**
-     		 * for API 11 and above
+     		
+     		// * for API 11 and above
 			SQLiteStatement insertCmd;
 			String strSQL = "DELETE FROM " + TABLE_MEMBER
-					+ " WHERE MemberID = ? ";
+					+ " WHERE IMEI = ? ";
 			
 			insertCmd = db.compileStatement(strSQL);
-			insertCmd.bindString(1, strMemberID);
+			insertCmd.bindString(1, strIMEI);
 			
 			return insertCmd.executeUpdateDelete();
-			*
-			*/
-				
-     		long rows = db.delete(TABLE_MEMBER, "MemberID = ?",
-		            new String[] { String.valueOf(strMemberID) });
+			
+			/*	
+     		long rows = db.delete(TABLE_MEMBER, "IMEI = ?",
+		            new String[] { String.valueOf(strIMEI) });
      		
      		db.close();
      		return rows; // return rows deleted.
-				
+				*/
 		 } catch (Exception e) {
 		    return -1;
 		 }
@@ -171,9 +171,9 @@ public class DBClass extends SQLiteOpenHelper {
 			 	    if (cursor.moveToFirst()) {
 			 	        do {
 			 	        	map = new HashMap<String, String>();
-			 	        	map.put("MemberID", cursor.getString(0));
-				 	        map.put("Name", cursor.getString(1));
-				 	        map.put("Tel", cursor.getString(2));
+			 	        	map.put("IMEI", cursor.getString(0));
+				 	        map.put("Model", cursor.getString(1));
+				 	        map.put("Price", cursor.getString(2));
 				 	        MyArrList.add(map);
 			 	        } while (cursor.moveToNext());
 			 	    }
@@ -190,7 +190,7 @@ public class DBClass extends SQLiteOpenHelper {
 
 	
 	// Update Data
-	public long UpdateData(String strMemberID,String strName,String strTel) {
+	public long UpdateData(String strIMEI,String strModel,String strPrice) {
 		// TODO Auto-generated method stub
 		
 		 try {
@@ -198,32 +198,32 @@ public class DBClass extends SQLiteOpenHelper {
 			SQLiteDatabase db;
      		db = this.getWritableDatabase(); // Write Data
      		
-     		/**
-     		 *  for API 11 and above
+     		
+     		// *  for API 11 and above
 			SQLiteStatement insertCmd;
 			String strSQL = "UPDATE " + TABLE_MEMBER
-					+ " SET Name = ? "
-					+ " , Tel = ? "
-					+ " WHERE MemberID = ? ";
+					+ " SET Model = ? "
+					+ " , Price = ? "
+					+ " WHERE IMEI = ? ";
 			
 			insertCmd = db.compileStatement(strSQL);
-			insertCmd.bindString(1, strName);
-			insertCmd.bindString(2, strTel);
-			insertCmd.bindString(3, strMemberID);
+			insertCmd.bindString(1, strModel);
+			insertCmd.bindString(2, strPrice);
+			insertCmd.bindString(3, strIMEI);
 				
 			return insertCmd.executeUpdateDelete();
-			*
-			*/
+			
+			/*
             ContentValues Val = new ContentValues();
-            Val.put("Name", strName);
-            Val.put("Tel", strTel);
+            Val.put("Model", strModel);
+            Val.put("Price", strPrice);
      
-            long rows = db.update(TABLE_MEMBER, Val, " MemberID = ?",
-                    new String[] { String.valueOf(strMemberID) });
+            long rows = db.update(TABLE_MEMBER, Val, " IMEI = ?",
+                    new String[] { String.valueOf(strIMEI) });
             
      		db.close();
      		return rows; // return rows updated.
-				
+				*/
 		 }
 		 catch (Exception e) {
 		    return -1;
