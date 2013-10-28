@@ -36,7 +36,7 @@ public class AddSaleItemActivity  extends Activity{
 //	    		for (int i = 0; i<menuItems.length; i++) {
 //	    			menu.add(Menu.NONE, i, i, menuItems[i]);  
 				}
-  
+   
 	//Command for selected menu. We will only need Add for now
 	 public boolean onContextItemSelected(MenuItem item) {
 //		    AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
