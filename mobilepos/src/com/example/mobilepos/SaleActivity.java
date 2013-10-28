@@ -73,7 +73,7 @@ public class SaleActivity extends Activity {
 //	        // for Delete Command
 //	        if ("Delete".equals(CmdName)) {
 //
-//	        	DBClass myDb = new DBClass(this);  
+//	        	DBClass myDb = new DBClass(this);
 //	        	
 //	        	long flg = myDb.DeleteData(MemID);
 //	        	if(flg > 0)
