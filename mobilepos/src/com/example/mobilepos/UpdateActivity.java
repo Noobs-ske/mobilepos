@@ -53,10 +53,10 @@ public class UpdateActivity extends Activity  {
 	
 	public void ShowData(String MemID)
 	{
-		// txtIMEI, txtName, txtTel
-		final TextView tIMEI = (TextView) findViewById(R.id.txtIMEI);
-		final EditText tModel = (EditText) findViewById(R.id.txtModel);
-		final EditText tPrice = (EditText) findViewById(R.id.txtPrice);
+		// txtMemberID, txtName, txtTel
+		final TextView tMemberID = (TextView) findViewById(R.id.txtMemberID);
+		final EditText tName = (EditText) findViewById(R.id.txtName);
+		final EditText tTel = (EditText) findViewById(R.id.txtTel);
 					
 		// new Class DB
 		final DBClass myDb = new DBClass(this);
@@ -65,9 +65,9 @@ public class UpdateActivity extends Activity  {
 		String arrData[] = myDb.SelectData(MemID);
     	if(arrData != null)
     	{
-    		tIMEI.setText(arrData[0]);
-    		tModel.setText(arrData[1]);
-    		tPrice.setText(arrData[2]);
+    		tMemberID.setText(arrData[0]);
+    		tName.setText(arrData[1]);
+    		tTel.setText(arrData[2]);
     	}
    
 	}
@@ -75,29 +75,29 @@ public class UpdateActivity extends Activity  {
 	public boolean UpdateData(String MemID)
 	{
 		
-		// txtModel, txtPrice
-		final EditText tModel = (EditText) findViewById(R.id.txtModel);
-		final EditText tPrice = (EditText) findViewById(R.id.txtPrice);
+		// txtName, txtTel
+		final EditText tName = (EditText) findViewById(R.id.txtName);
+		final EditText tTel = (EditText) findViewById(R.id.txtTel);
 				
 		// Dialog
 		final AlertDialog.Builder adb = new AlertDialog.Builder(this);
 		AlertDialog ad = adb.create();
 				
-		// Check Model
-		if(tModel.getText().length() == 0)
+		// Check Name
+		if(tName.getText().length() == 0)
 		{
-            ad.setMessage("Please input [Model] ");
+            ad.setMessage("Please input [Name] ");
             ad.show();
-            tModel.requestFocus();
+            tName.requestFocus();
             return false;
 		}	
 		
-		// Check Price
-		if(tPrice.getText().length() == 0)
+		// Check Tel
+		if(tTel.getText().length() == 0)
 		{
-            ad.setMessage("Please input [Price] ");
+            ad.setMessage("Please input [Tel] ");
             ad.show();
-            tPrice.requestFocus();
+            tTel.requestFocus();
             return false;
 		}		
 		
@@ -106,8 +106,8 @@ public class UpdateActivity extends Activity  {
     		
     	// Save Data
     	long saveStatus = myDb.UpdateData(MemID,
-    			tModel.getText().toString(),
-    			tPrice.getText().toString());
+    			tName.getText().toString(),
+    			tTel.getText().toString());
     	if(saveStatus <=  0)
     	{
             ad.setMessage("Error!! ");

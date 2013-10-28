@@ -9,16 +9,15 @@
       android:layout_height="wrap_content"
       android:padding="5dip" >
      
-
      <TextView
-         android:id="@+id/textView1"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_marginTop="20dp"
-         android:layout_span="3"
-         android:gravity="center"
-         android:text="Update Item : "
-         android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Update Member : "
+        android:layout_span="3"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
    	        
  	</TableRow>
  		
@@ -32,18 +31,16 @@
       android:layout_height="wrap_content"
       android:padding="5dip" >
 
-
       <TextView
           android:id="@+id/textView2"
-          android:text="IMEI"
+          android:text="MemberID : "
           android:textAppearance="?android:attr/textAppearanceMedium" />
 
-
       <TextView
-          android:id="@+id/txtIMEI"
+          android:id="@+id/txtMemberID"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="IMEI" />
+          android:text="MemberID" />     
 
 	</TableRow>
 		
@@ -53,14 +50,13 @@
       android:layout_height="wrap_content"
       android:padding="5dip" >
 
-
 	    <TextView
 	        android:id="@+id/textView3"
-	        android:text="Model"
+	        android:text="Name : "
 	        android:textAppearance="?android:attr/textAppearanceMedium" />
 	
 	    <EditText
-	        android:id="@+id/txtModel"
+	        android:id="@+id/txtName"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:ems="10" >
@@ -74,21 +70,17 @@
       android:layout_height="wrap_content"
       android:padding="5dip" >
 
-
 	      <TextView
 	          android:id="@+id/textView4"
-	          android:text="Price"
+	          android:text="Tel : "
 	          android:textAppearance="?android:attr/textAppearanceMedium" />
 	
-
-
 	      <EditText
-	          android:id="@+id/txtPrice"
+	          android:id="@+id/txtTel"
 	          android:layout_width="wrap_content"
 	          android:layout_height="wrap_content"
-	          android:ems="10"
-	          android:inputType="number|numberDecimal" >
-
+	          android:inputType="number"
+	          android:ems="10" >
 	      </EditText>	      
 
 	</TableRow>

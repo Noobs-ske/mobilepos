@@ -48,59 +48,59 @@ public class AddActivity extends Activity  {
 	
 	public boolean SaveData()
 	{
-		// txtIMEI, txtName, txtTel
-		final EditText tIMEI = (EditText) findViewById(R.id.txtIMEI);
-		final EditText tModel = (EditText) findViewById(R.id.txtModel);
-		final EditText tPrice = (EditText) findViewById(R.id.txtPrice);
+		// txtMemberID, txtName, txtTel
+		final EditText tMemberID = (EditText) findViewById(R.id.txtMemberID);
+		final EditText tName = (EditText) findViewById(R.id.txtName);
+		final EditText tTel = (EditText) findViewById(R.id.txtTel);
 				
 		// Dialog
 		final AlertDialog.Builder adb = new AlertDialog.Builder(this);
 		AlertDialog ad = adb.create();
 		
-		// Check IMEI
-		if(tIMEI.getText().length() == 0)
+		// Check MemberID
+		if(tMemberID.getText().length() == 0)
 		{
-            ad.setMessage("Please input [IMEI] ");
+            ad.setMessage("Please input [MemberID] ");
             ad.show();
-            tIMEI.requestFocus();
+            tMemberID.requestFocus();
             return false;
 		}
 		
-		// Check Model
-		if(tModel.getText().length() == 0)
+		// Check Name
+		if(tName.getText().length() == 0)
 		{
-            ad.setMessage("Please input [Model] ");
+            ad.setMessage("Please input [Name] ");
             ad.show();
-            tModel.requestFocus();
+            tName.requestFocus();
             return false;
 		}	
 		
-		// Check Price
-		if(tPrice.getText().length() == 0)
+		// Check Tel
+		if(tTel.getText().length() == 0)
 		{
-            ad.setMessage("Please input [Price] ");
+            ad.setMessage("Please input [Tel] ");
             ad.show();
-            tPrice.requestFocus();
+            tTel.requestFocus();
             return false;
 		}		
 		
 		// new Class DB
 		final DBClass myDb = new DBClass(this);
 		
-		// Check Data (IMEI exists)
-		String arrData[] = myDb.SelectData(tIMEI.getText().toString());
+		// Check Data (MemberID exists)
+		String arrData[] = myDb.SelectData(tMemberID.getText().toString());
     	if(arrData != null)
     	{
-    		ad.setMessage("IMEI already exists!  ");
+    		ad.setMessage("MemberID already exists!  ");
     		ad.show();
-    		tIMEI.requestFocus();
+    		tMemberID.requestFocus();
    		 	return false; 
     	}
     		
     	// Save Data
-    	long saveStatus = myDb.InsertData(tIMEI.getText().toString(),
-    			tModel.getText().toString(),
-    			tPrice.getText().toString());
+    	long saveStatus = myDb.InsertData(tMemberID.getText().toString(),
+    			tName.getText().toString(),
+    			tTel.getText().toString());
     	if(saveStatus <=  0)
     	{
             ad.setMessage("Error!! ");
