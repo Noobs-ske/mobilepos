@@ -28,6 +28,10 @@ public class MainActivity extends Activity {
             }
         });
         
+        
+        //TODO Sale Button
+       
+        
 	}
 
     @Override

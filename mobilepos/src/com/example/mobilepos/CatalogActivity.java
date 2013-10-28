@@ -37,7 +37,7 @@ public class CatalogActivity extends Activity{
         btn_Sale.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	
-            	// Open Sale
+            	// [Open Sale  -- Might be best to change MainActivity to SaleActivity]
             	Intent newActivity = new Intent(CatalogActivity.this,MainActivity.class);
             	startActivity(newActivity);
         
@@ -59,6 +59,13 @@ public class CatalogActivity extends Activity{
         });
 	
 	}
+	
+	//[Might need an injection get current List method to use in AddSaleItemActivity]
+	public ArrayList<HashMap<String, String>> getMebmerList()
+	{
+		return MebmerList;
+	}
+	
 	
 	// Show List data
 	public void ShowListData()

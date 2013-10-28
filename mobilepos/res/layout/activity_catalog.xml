@@ -84,13 +84,6 @@
 	<View
 		android:layout_height="1dip"
 		android:background="#CCCCCC" />
-   		  
-   	<LinearLayout
-      android:id="@+id/LinearLayout1"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:padding="5dip" >
-    </LinearLayout>
     
     </TableLayout>
 
