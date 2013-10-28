@@ -34,7 +34,7 @@ public class AddSaleItemActivity  extends Activity{
 //	    		menu.setHeaderTitle("Command for : " + MebmerList.get(info.position).get("Name").toString());
 //	    		String[] menuItems = getResources().getStringArray(R.array.SaleMenu); 
 //	    		for (int i = 0; i<menuItems.length; i++) {
-//	    			menu.add(Menu.NONE, i, i, menuItems[i]);
+//	    			menu.add(Menu.NONE, i, i, menuItems[i]);  
 				}
 	 
 	//Command for selected menu. We will only need Add for now
