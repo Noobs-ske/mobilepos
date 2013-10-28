@@ -58,7 +58,14 @@ public class CatalogActivity extends Activity{
             }
         });
 	
-	}
+	} 
+	
+	//[Might need an injection get current List method to use in AddSaleItemActivity]
+//	public ArrayList<HashMap<String, String>> getMebmerList()
+//	{
+//		return MebmerList;  
+//	}
+	
 	
 	//[Might need an injection get current List method to use in AddSaleItemActivity]
 	public ArrayList<HashMap<String, String>> getMebmerList()

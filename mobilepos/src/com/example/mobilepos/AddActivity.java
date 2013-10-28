@@ -97,6 +97,10 @@ public class AddActivity extends Activity  {
    		 	return false; 
     	}
     		
+
+    	
+    	
+    	
     	// Save Data
     	long saveStatus = myDb.InsertData(tMemberID.getText().toString(),
     			tName.getText().toString(),
