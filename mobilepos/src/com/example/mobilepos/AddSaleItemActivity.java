@@ -19,7 +19,7 @@ public class AddSaleItemActivity  extends Activity{
 	ArrayList<HashMap<String, String>> MebmerList;
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-<<<<<<< HEAD
+
 /*		setContentView(R.layout.activity_sale_item_add);
 // [Upon clicking this button, display the items from Catalogs and uses Context command]
 		//CatalogActivity.ShowListData();  //Show the current DB table
@@ -59,14 +59,14 @@ public class AddSaleItemActivity  extends Activity{
 
 	    	return true;
 	    }*/
-=======
+
 //		setContentView(R.layout.activity_sale_item_add);
 // [Upon clicking this button, display the items from Catalogs and uses Context command]
 	//	CatalogActivity.ShowListData();  //Show the current DB table
 	//	this.MebmerList = CatalogActivity.getMebmerList();
 		//[Uses context code, but change it]
 		
-	}
+	//}
 	
 	//Display menu when you hold on the item
 	 public void onCreateContextMenu(ContextMenu menu, View v,
@@ -99,8 +99,7 @@ public class AddSaleItemActivity  extends Activity{
 
 	    	return true;
 	    }
->>>>>>> branch 'master' of https://github.com/Noobs-ske/mobilepos.git
-	    	
+
 	    
 
 

@@ -1,4 +1,4 @@
-package com.example.mobilepos;
+/*package com.example.mobilepos;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,7 +17,7 @@ import android.widget.Toast;
 public class SaleActivity extends Activity {
 
 	//Item ID to Price
-<<<<<<< HEAD
+
 //	ArrayList<HashMap<String, double>> SaleList;
 	
 	public void onCreate(Bundle savedInstanceState) {
@@ -62,7 +62,7 @@ public class SaleActivity extends Activity {
 	}
 	
 	// @Override
-/*	    public boolean onContextItemSelected(MenuItem item) {
+	    public boolean onContextItemSelected(MenuItem item) {
 		    AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
 		    int menuItemIndex = item.getItemId();
 // [Is it possible to just, not use R.Array.Cmdmenu and add in the strong normally?]
@@ -94,7 +94,7 @@ public class SaleActivity extends Activity {
 	        }
 
 	    	return true;
-	    }*/
+	    }
 =======
 	ArrayList<HashMap<String, Double>> SaleList;
 	
@@ -173,5 +173,6 @@ public class SaleActivity extends Activity {
 //
 	    	return true;
 	    }
->>>>>>> branch 'master' of https://github.com/Noobs-ske/mobilepos.git
+
 }
+*/
