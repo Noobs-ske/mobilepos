@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SaleActivity extends Activity {
-	ArrayList<HashMap<String, String>> MebmerList;
+	ArrayList<HashMap<String, String>> ItemList;
 	ArrayList<String> SaleList;
 
 	@Override
@@ -84,12 +84,12 @@ public class SaleActivity extends Activity {
 			total += Double.parseDouble(arrData[2]);
 			MyArrList.add(map);
 		}
-		MebmerList = MyArrList;
+		ItemList = MyArrList;
 		// listView1
 		ListView lisView1 = (ListView) findViewById(R.id.listView1);
 
 		SimpleAdapter sAdap;
-		sAdap = new SimpleAdapter(SaleActivity.this, MebmerList,
+		sAdap = new SimpleAdapter(SaleActivity.this, ItemList,
 				R.layout.activity_salecolumn, new String[] { "MemberID",
 						"Name", "Tel" }, new int[] { R.id.ItemID, R.id.Name,
 						R.id.Price });
@@ -106,7 +106,7 @@ public class SaleActivity extends Activity {
 		// if (v.getId()==R.id.list) {
 		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
 		menu.setHeaderTitle("Command for : "
-				+ MebmerList.get(info.position).get("Name").toString());
+				+ ItemList.get(info.position).get("Name").toString());
 		String[] menuItems = getResources().getStringArray(R.array.CmdMenu);
 		menu.add(Menu.NONE, 2, 2, menuItems[2]);
 		// }
@@ -118,12 +118,12 @@ public class SaleActivity extends Activity {
 		int menuItemIndex = item.getItemId();
 		String[] menuItems = getResources().getStringArray(R.array.CmdMenu);
 		String CmdName = menuItems[menuItemIndex];
-		String MemID = MebmerList.get(info.position).get("MemberID").toString();
-		String MemName = MebmerList.get(info.position).get("Name").toString();
+		String MemID = ItemList.get(info.position).get("MemberID").toString();
+		String MemName = ItemList.get(info.position).get("Name").toString();
 
 		if ("Delete".equals(CmdName)) {
 
-			MebmerList.remove(MebmerList.get(info.position));
+			ItemList.remove(ItemList.get(info.position));
 			for (int i = 0; i < SaleList.size(); i++) {
 				if (MemID.equals(SaleList.get(i))) {
 					SaleList.remove(i);

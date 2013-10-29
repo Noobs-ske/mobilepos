@@ -21,7 +21,7 @@ import android.widget.AdapterView.OnItemClickListener;
 public class CatalogActivity extends Activity {
 
 	//list of item in catalog
-	ArrayList<HashMap<String, String>> MebmerList;
+	ArrayList<HashMap<String, String>> ItemList;
 	
 	//list of purchase's item in catalog
 	ArrayList<String> PurchaseList = new ArrayList<String>();
@@ -74,19 +74,19 @@ public class CatalogActivity extends Activity {
 	// [Might need an injection get current List method to use in
 	// AddSaleItemActivity]
 	public ArrayList<HashMap<String, String>> getMebmerList() {
-		return MebmerList;
+		return ItemList;
 	}
 
 	// Show List data
 	public void ShowListData() {
 		final DBClass myDb = new DBClass(this);
-		MebmerList = myDb.SelectAllData();
+		ItemList = myDb.SelectAllData();
 
 		// listView1
 		ListView lisView1 = (ListView) findViewById(R.id.listView1);
 
 		SimpleAdapter sAdap;
-		sAdap = new SimpleAdapter(CatalogActivity.this, MebmerList,
+		sAdap = new SimpleAdapter(CatalogActivity.this, ItemList,
 				R.layout.activity_column, new String[] { "MemberID", "Name",
 						"Tel" }, new int[] { R.id.ColMemberID, R.id.ColName,
 						R.id.ColTel });
@@ -100,7 +100,7 @@ public class CatalogActivity extends Activity {
 		// if (v.getId()==R.id.list) {
 		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
 		menu.setHeaderTitle("Command for : "
-				+ MebmerList.get(info.position).get("Name").toString());
+				+ ItemList.get(info.position).get("Name").toString());
 		String[] menuItems = getResources().getStringArray(R.array.CmdMenu);
 		for (int i = 0; i < menuItems.length; i++) {
 			menu.add(Menu.NONE, i, i, menuItems[i]);
@@ -115,8 +115,8 @@ public class CatalogActivity extends Activity {
 		int menuItemIndex = item.getItemId();
 		String[] menuItems = getResources().getStringArray(R.array.CmdMenu);
 		String CmdName = menuItems[menuItemIndex];
-		String MemID = MebmerList.get(info.position).get("MemberID").toString();
-		String MemName = MebmerList.get(info.position).get("Name").toString();
+		String MemID = ItemList.get(info.position).get("MemberID").toString();
+		String MemName = ItemList.get(info.position).get("Name").toString();
 
 		// Check Event Command
 		if ("Purchase".equals(CmdName)) {
@@ -142,7 +142,7 @@ public class CatalogActivity extends Activity {
 			Intent newActivity = new Intent(CatalogActivity.this,
 					UpdateActivity.class);
 			newActivity.putExtra("MemID",
-					MebmerList.get(info.position).get("MemberID").toString());
+					ItemList.get(info.position).get("MemberID").toString());
 			startActivity(newActivity);
 
 			// for Delete Command

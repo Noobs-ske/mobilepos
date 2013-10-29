@@ -56,7 +56,7 @@ public class AddActivity extends Activity {
 
 		// Check MemberID
 		if (tMemberID.getText().length() == 0) {
-			ad.setMessage("Please input [MemberID] ");
+			ad.setMessage("Please input [ItemID] ");
 			ad.show();
 			tMemberID.requestFocus();
 			return false;
@@ -72,7 +72,7 @@ public class AddActivity extends Activity {
 
 		// Check Tel
 		if (tTel.getText().length() == 0) {
-			ad.setMessage("Please input [Tel] ");
+			ad.setMessage("Please input [Price] ");
 			ad.show();
 			tTel.requestFocus();
 			return false;
@@ -84,7 +84,7 @@ public class AddActivity extends Activity {
 		// Check Data (MemberID exists)
 		String arrData[] = myDb.SelectData(tMemberID.getText().toString());
 		if (arrData != null) {
-			ad.setMessage("MemberID already exists!  ");
+			ad.setMessage("ItemID already exists!  ");
 			ad.show();
 			tMemberID.requestFocus();
 			return false;

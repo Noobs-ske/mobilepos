@@ -90,7 +90,7 @@ public class UpdateActivity extends Activity {
 
 		// Check Tel
 		if (tTel.getText().length() == 0) {
-			ad.setMessage("Please input [Tel] ");
+			ad.setMessage("Please input [Price] ");
 			ad.show();
 			tTel.requestFocus();
 			return false;
