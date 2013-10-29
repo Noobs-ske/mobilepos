@@ -19,7 +19,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SaleActivity extends Activity {
+	// list of item in catalog
 	ArrayList<HashMap<String, String>> ItemList;
+	//list of sale's item
 	ArrayList<String> SaleList;
 
 	@Override
