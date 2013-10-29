@@ -33,14 +33,14 @@
 
       <TextView
           android:id="@+id/textView2"
-          android:text="MemberID : "
+          android:text="ItemID : "
           android:textAppearance="?android:attr/textAppearanceMedium" />
 
       <TextView
           android:id="@+id/txtMemberID"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="MemberID" />     
+          android:text="number" />
 
 	</TableRow>
 		
@@ -72,7 +72,7 @@
 
 	      <TextView
 	          android:id="@+id/textView4"
-	          android:text="Tel : "
+	          android:text="Price : "
 	          android:textAppearance="?android:attr/textAppearanceMedium" />
 	
 	      <EditText

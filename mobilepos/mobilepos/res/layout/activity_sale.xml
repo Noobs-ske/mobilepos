@@ -9,7 +9,7 @@
         android:id="@+id/textView1"
         android:layout_width="149dp"
         android:layout_height="wrap_content"
-        android:text="Total"
+        android:text="@string/total"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
@@ -34,14 +34,14 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name"
+                android:text="ItemID"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="                                         "
+                android:text="             Name                   "
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
@@ -62,7 +62,8 @@
             android:id="@+id/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Calculate" />
+            android:text="@string/button_checkout" />
+
     </TableLayout>
 
 </LinearLayout>

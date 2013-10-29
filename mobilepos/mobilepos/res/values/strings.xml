@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <string name="app_name">mobilepos</string>
@@ -8,10 +9,16 @@
     <string name="button_catalog">Catalog</string>
     <string name="button_add">Add</string>
     <string name="button_remove">Remove</string>
-    
+
     <string-array name="CmdMenu">
-		<item>Edit</item>
-		<item>Delete</item>
-	</string-array>
+        <item>Purchase</item>
+        <item>Edit</item>
+        <item >Delete</item>
+    </string-array>
+
+    <string name="button_checkout">Checkout</string>
+    <string name="title_activity_sale">SaleActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="total">Total</string>
 
 </resources>

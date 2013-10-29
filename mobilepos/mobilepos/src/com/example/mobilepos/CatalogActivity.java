@@ -18,131 +18,152 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
+public class CatalogActivity extends Activity {
 
-public class CatalogActivity extends Activity{
-	
+	//list of item in catalog
 	ArrayList<HashMap<String, String>> MebmerList;
+	
+	//list of purchase's item in catalog
+	ArrayList<String> PurchaseList = new ArrayList<String>();
+
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_catalog);
-		
+
 		// Call Show List All Data
-		ShowListData();		
-		
-		
+		ShowListData();
+
 		// Button1
-        final Button btn_Sale = (Button) findViewById(R.id.button1);
-        // Perform action on click
-        btn_Sale.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            	
-            	// [Open Sale  -- Might be best to change MainActivity to SaleActivity]
-            	Intent newActivity = new Intent(CatalogActivity.this,MainActivity.class);
-            	startActivity(newActivity);
-        
-            }
-        });
-        
-     // Button3
-        
-        final Button btn_Add = (Button) findViewById(R.id.button3);
-        // Perform action on click
-        btn_Add.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            	
-            	// Open Add  
-            	Intent newActivity = new Intent(CatalogActivity.this,AddActivity.class);
-            	startActivity(newActivity);
-        
-            }
-        });
+		final Button btn_Sale = (Button) findViewById(R.id.button1);
+		// Perform action on click
+		btn_Sale.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+
+				// [Open Sale -- Might be best to change MainActivity to
+				// SaleActivity]
+				Intent newActivity = new Intent(CatalogActivity.this,
+						SaleActivity.class);
+				newActivity.putStringArrayListExtra("PurchaseList",
+						PurchaseList);
+				PurchaseList = new ArrayList<String>();
+				startActivity(newActivity);
+
+			}
+		});
+
+		// Button3
+
+		final Button btn_Add = (Button) findViewById(R.id.button3);
+		// Perform action on click
+		btn_Add.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+
+				// Open Add
+				Intent newActivity = new Intent(CatalogActivity.this,
+						AddActivity.class);
+				startActivity(newActivity);
+
+			}
+		});
+
+	}
+
 	
-	} 
-	
-	//[Might need an injection get current List method to use in AddSaleItemActivity]
-//	public ArrayList<HashMap<String, String>> getMebmerList()
-//	{
-//		return MebmerList;  
-//	}
-	
-	
-	//[Might need an injection get current List method to use in AddSaleItemActivity]
-	public ArrayList<HashMap<String, String>> getMebmerList()
-	{
+
+	// [Might need an injection get current List method to use in
+	// AddSaleItemActivity]
+	public ArrayList<HashMap<String, String>> getMebmerList() {
 		return MebmerList;
 	}
-	
-	
+
 	// Show List data
-	public void ShowListData()
-	{
-		DBClass myDb = new DBClass(this);
-		MebmerList = myDb.SelectAllData();   
-		
-        // listView1
-        ListView lisView1 = (ListView)findViewById(R.id.listView1); 
-        
-        SimpleAdapter sAdap;
-        sAdap = new SimpleAdapter(CatalogActivity.this, MebmerList, R.layout.activity_column,
-                new String[] {"MemberID", "Name", "Tel"}, new int[] {R.id.ColMemberID, R.id.ColName, R.id.ColTel});      
-        lisView1.setAdapter(sAdap);
-        registerForContextMenu(lisView1);
+	public void ShowListData() {
+		final DBClass myDb = new DBClass(this);
+		MebmerList = myDb.SelectAllData();
+
+		// listView1
+		ListView lisView1 = (ListView) findViewById(R.id.listView1);
+
+		SimpleAdapter sAdap;
+		sAdap = new SimpleAdapter(CatalogActivity.this, MebmerList,
+				R.layout.activity_column, new String[] { "MemberID", "Name",
+						"Tel" }, new int[] { R.id.ColMemberID, R.id.ColName,
+						R.id.ColTel });
+		lisView1.setAdapter(sAdap);
+		registerForContextMenu(lisView1);
 	}
-	
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v,
-    		ContextMenuInfo menuInfo) {
-    	//if (v.getId()==R.id.list) {
-    	    AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
-    		menu.setHeaderTitle("Command for : " + MebmerList.get(info.position).get("Name").toString());
-    		String[] menuItems = getResources().getStringArray(R.array.CmdMenu); 
-    		for (int i = 0; i<menuItems.length; i++) {
-    			menu.add(Menu.NONE, i, i, menuItems[i]);
-			}
-    	//}
-    }
-    
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-	    AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
-	    int menuItemIndex = item.getItemId();
+
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+		// if (v.getId()==R.id.list) {
+		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+		menu.setHeaderTitle("Command for : "
+				+ MebmerList.get(info.position).get("Name").toString());
+		String[] menuItems = getResources().getStringArray(R.array.CmdMenu);
+		for (int i = 0; i < menuItems.length; i++) {
+			menu.add(Menu.NONE, i, i, menuItems[i]);
+		}
+		// }
+	}
+
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item
+				.getMenuInfo();
+		int menuItemIndex = item.getItemId();
 		String[] menuItems = getResources().getStringArray(R.array.CmdMenu);
 		String CmdName = menuItems[menuItemIndex];
 		String MemID = MebmerList.get(info.position).get("MemberID").toString();
-	    //String MemName = MebmerList.get(info.position).get("Name").toString();
-	    
-	    // Check Event Command
-        if ("Edit".equals(CmdName)) {
+		String MemName = MebmerList.get(info.position).get("Name").toString();
 
-    	  	//Show on new activity	
-        	Intent newActivity = new Intent(CatalogActivity.this,UpdateActivity.class);
-        	newActivity.putExtra("MemID", MebmerList.get(info.position).get("MemberID").toString());
-        	startActivity(newActivity);
-        
-        // for Delete Command
-        } else if ("Delete".equals(CmdName)) {
+		// Check Event Command
+		if ("Purchase".equals(CmdName)) {
+			boolean chk = true;
+			for (int i = 0; i < PurchaseList.size(); i++) {
+				if (PurchaseList.get(i).equals(MemID)) {
+					chk = false;
+					break;
+				}
 
-        	DBClass myDb = new DBClass(this);
-        	
-        	long flg = myDb.DeleteData(MemID);
-        	if(flg > 0)
-        	{
-        	 Toast.makeText(CatalogActivity.this,"Delete Data Successfully",
-        			 	Toast.LENGTH_LONG).show(); 
-        	}
-        	else
-        	{
-           	 Toast.makeText(CatalogActivity.this,"Delete Data Failed.",
-     			 	Toast.LENGTH_LONG).show(); 
-        	}
-        	
-        	// Call Show Data again
-        	ShowListData();
-        }
+			}
+			if (chk)
+				PurchaseList.add(MemID);
+			else {
+				Toast.makeText(CatalogActivity.this,
+						"You're already Purchase.", Toast.LENGTH_LONG).show();
+			}
+		}
 
-    	return true;
-    }
+		else if ("Edit".equals(CmdName)) {
 
+			// Show on new activity
+			Intent newActivity = new Intent(CatalogActivity.this,
+					UpdateActivity.class);
+			newActivity.putExtra("MemID",
+					MebmerList.get(info.position).get("MemberID").toString());
+			startActivity(newActivity);
+
+			// for Delete Command
+		} else if ("Delete".equals(CmdName)) {
+
+			DBClass myDb = new DBClass(this);
+
+			long flg = myDb.DeleteData(MemID);
+			if (flg > 0) {
+				Toast.makeText(CatalogActivity.this,
+						"Delete Data Successfully", Toast.LENGTH_LONG).show();
+			} else {
+				Toast.makeText(CatalogActivity.this, "Delete Data Failed.",
+						Toast.LENGTH_LONG).show();
+			}
+
+			// Call Show Data again
+			ShowListData();
+		}
+
+		return true;
+	}
 
 }

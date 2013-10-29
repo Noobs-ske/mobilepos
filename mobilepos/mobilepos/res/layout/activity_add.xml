@@ -10,14 +10,14 @@
       android:padding="5dip" >
      
      <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:text="Add New Member : "
-        android:layout_span="3"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+         android:id="@+id/textView1"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="20dp"
+         android:layout_span="3"
+         android:gravity="center"
+         android:text="Add New Item : "
+         android:textAppearance="?android:attr/textAppearanceLarge" />
    	        
  	</TableRow>
  		
@@ -33,7 +33,7 @@
 
       <TextView
           android:id="@+id/textView2"
-          android:text="MemberID"
+          android:text="ItemID"
           android:textAppearance="?android:attr/textAppearanceMedium" />
 
       <EditText
@@ -75,15 +75,16 @@
 
 	      <TextView
 	          android:id="@+id/textView4"
-	          android:text="Tel"
+	          android:text="Price"
 	          android:textAppearance="?android:attr/textAppearanceMedium" />
 	
 	      <EditText
 	          android:id="@+id/txtTel"
 	          android:layout_width="wrap_content"
 	          android:layout_height="wrap_content"
-	          android:inputType="number"
-	          android:ems="10" >
+	          android:ems="10"
+	          android:inputType="number|numberDecimal" >
+
 	      </EditText>	      
 
 	</TableRow>

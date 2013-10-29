@@ -1,178 +1,139 @@
-/*package com.example.mobilepos;
+package com.example.mobilepos;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
+import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class SaleActivity extends Activity {
+	ArrayList<HashMap<String, String>> MebmerList;
+	ArrayList<String> SaleList;
 
-	//Item ID to Price
-
-//	ArrayList<HashMap<String, double>> SaleList;
-	
-	public void onCreate(Bundle savedInstanceState) {
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-	// [Need Automated item in R for activity_sale]
 		setContentView(R.layout.activity_sale);
-	// [This one will display the table for item currently registered for sale]
-		ShowSaleData();
-	 ShowTotalPrice();
-	// 	[This one will be the Add Item button for this Sale activity]
-		final Button btn_Add = (Button) findViewById(R.id.button3);
-    //  	// Perform action on click
-        btn_Add.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-           	
-    //        	// Open Add  
-            	Intent newActivity = new Intent(SaleActivity.this,AddSaleItemActivity.class);
-           	startActivity(newActivity);
-        
-            }
-        });
+
+		Intent intent = getIntent();
+		SaleList = intent.getStringArrayListExtra("PurchaseList");
+
+		ShowAllData();
+		// Button1
+		final Button btn_ChkOut = (Button) findViewById(R.id.button1);
+		// Perform action on click
+		btn_ChkOut.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+
+				Checkout();
+				// [Open Sale -- Might be best to change MainActivity to
+				// SaleActivity]
+				Intent newActivity = new Intent(SaleActivity.this,
+						CatalogActivity.class);
+				startActivity(newActivity);
+
+			}
+		});
 	}
 
-	public void ShowSaleData()
-	{
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.sale, menu);
+		return true;
+	}
+
+	/*
+	 * public ArrayList<HashMap<String, String>> getSaleList() { return
+	 * SaleList; }
+	 */
+	public void Checkout() {
 		DBClass myDb = new DBClass(this);
-//		SaleList = myDb.SelectAllData();
-	
-  //	// listView1
-      ListView lisView1 = (ListView)findViewById(R.id.listView1); 
-  //      
-  //  SimpleAdapter sAdap;
- //    sAdap = new SimpleAdapter(SaleActivity.this, SaleList, R.layout.activity_column,
-//              new String[] {"ItemID", "Name", "Price"}, new int[] {R.id.ColItemID, R.id.ColName, R.id.ColPrice});      
- //      lisView1.setAdapter(sAdap);
-       registerForContextMenu(lisView1);
-	}
-	
-	public void ShowTotalPrice()
-	{
-	// [Search through array of data, then compare the Item ID to Hash map, add price from there, display]
-	}
-	
-	// @Override
-	    public boolean onContextItemSelected(MenuItem item) {
-		    AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
-		    int menuItemIndex = item.getItemId();
-// [Is it possible to just, not use R.Array.Cmdmenu and add in the strong normally?]
-			String[] menuItems = getResources().getStringArray(R.array.CmdMenu);
-			String CmdName = menuItems[menuItemIndex];
-//			String MemID = SaleList.get(info.position).get("MemberID").toString();
-		    //String MemName = MebmerList.get(info.position).get("Name").toString();
-		    
-	        // for Delete Command
-        if ("Delete".equals(CmdName)) {
 
-	        	DBClass myDb = new DBClass(this);
-	        	
-	        	long flg = myDb.DeleteData(MemID);
-	        	if(flg > 0)
-	        	{
-	        	 Toast.makeText(SaleActivity.this,"Delete Item Successfully",
-	        			 	Toast.LENGTH_LONG).show(); 
-	        	}
-	        	else
-	        	{
-	           	 Toast.makeText(SaleActivity.this,"Delete Item Failed.",
-	     			 	Toast.LENGTH_LONG).show(); 
-	        	}
-	        	
-	        	// Call Sale Data again
-	        	ShowSaleData();
-				ShowTotalPrice();
-	        }
+		for (int i = 0; i < SaleList.size(); i++) {
+			myDb.DeleteData(SaleList.get(i));
+		}
+		SaleList = null;
 
-	    	return true;
-	    }
-=======
-	ArrayList<HashMap<String, Double>> SaleList;
-	
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-	// [Need Automated item in R for activity_sale]
-	//	setContentView(R.layout.activity_sale);
-	// [This one will display the table for item currently registered for sale]
-	//	ShowSaleData();
-	//  ShowTotalPrice();
-	// 	[This one will be the Add Item button for this Sale activity]
-	//	final Button btn_Add = (Button) findViewById(R.id.button3);
-    //  	// Perform action on click
-    //    btn_Add.setOnClickListener(new View.OnClickListener() {
-    //        public void onClick(View v) {
-    //       	
-    //        	// Open Add  
-    //        	Intent newActivity = new Intent(SaleActivity.this,AddItemActivity.class);
-    //       	startActivity(newActivity);
-    //    
-    //        }
-    //    });
 	}
 
-	public void ShowSaleData()
-	{
-//		DBClass myDb = new DBClass(this);
-//		SaleList = myDb.SelectAllData();
-//		
-  //	// listView1
-  //    ListView lisView1 = (ListView)findViewById(R.id.listView1); 
-  //      
-  //  SimpleAdapter sAdap;
-  //   sAdap = new SimpleAdapter(SaleActivity.this, SaleList, R.layout.activity_column,
-  //            new String[] {"ItemID", "Name", "Price"}, new int[] {R.id.ColItemID, R.id.ColName, R.id.ColPrice});      
-  //     lisView1.setAdapter(sAdap);
-  //      registerForContextMenu(lisView1);
+	public void ShowAllData() {
+		double total = 0;
+		ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
+		HashMap<String, String> map;
+
+		DBClass myDb = new DBClass(this);
+		for (int i = 0; i < SaleList.size(); i++) {
+			String arrData[] = myDb.SelectData(SaleList.get(i));
+			map = new HashMap<String, String>();
+			map.put("MemberID", arrData[0]);
+			map.put("Name", arrData[1]);
+			map.put("Tel", arrData[2]);
+			total += Double.parseDouble(arrData[2]);
+			MyArrList.add(map);
+		}
+		MebmerList = MyArrList;
+		// listView1
+		ListView lisView1 = (ListView) findViewById(R.id.listView1);
+
+		SimpleAdapter sAdap;
+		sAdap = new SimpleAdapter(SaleActivity.this, MebmerList,
+				R.layout.activity_salecolumn, new String[] { "MemberID",
+						"Name", "Tel" }, new int[] { R.id.ItemID, R.id.Name,
+						R.id.Price });
+		lisView1.setAdapter(sAdap);
+		registerForContextMenu(lisView1);
+
+		// Show total
+		TextView text_TotalPrice = (TextView) findViewById(R.id.textView2);
+		text_TotalPrice.setText("" + total);
 	}
-	
-	public void ShowTotalPrice()
-	{
-	// [Search through array of data, then compare the Item ID to Hash map, add price from there, display]
+
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+		// if (v.getId()==R.id.list) {
+		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+		menu.setHeaderTitle("Command for : "
+				+ MebmerList.get(info.position).get("Name").toString());
+		String[] menuItems = getResources().getStringArray(R.array.CmdMenu);
+		menu.add(Menu.NONE, 2, 2, menuItems[2]);
+		// }
 	}
-	
-	 @Override
-	    public boolean onContextItemSelected(MenuItem item) {
-//		    AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
-//		    int menuItemIndex = item.getItemId();
-// [Is it possible to just, not use R.Array.Cmdmenu and add in the strong normally?]
-//			String[] menuItems = getResources().getStringArray(R.array.CmdMenu);
-//			String CmdName = menuItems[menuItemIndex];
-//			String MemID = SaleList.get(info.position).get("MemberID").toString();
-//		    //String MemName = MebmerList.get(info.position).get("Name").toString();
-//		    
-//	        // for Delete Command
-//	        if ("Delete".equals(CmdName)) {
-//
-//	        	DBClass myDb = new DBClass(this);
-//	        	   
-//	        	long flg = myDb.DeleteData(MemID);
-//	        	if(flg > 0)
-//	        	{
-//	        	 Toast.makeText(SaleActivity.this,"Delete Item Successfully",
-//	        			 	Toast.LENGTH_LONG).show(); 
-//	        	}
-//	        	else
-//	        	{
-//	           	 Toast.makeText(SaleActivity.this,"Delete Item Failed.",
-//	     			 	Toast.LENGTH_LONG).show(); 
-//	        	}
-//	        	
-//	        	// Call Sale Data again
-//	        	ShowSaleData();
-//				ShowTotalPrice();
-//	        }
-//
-	    	return true;
-	    }
+
+	public boolean onContextItemSelected(MenuItem item) {
+		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item
+				.getMenuInfo();
+		int menuItemIndex = item.getItemId();
+		String[] menuItems = getResources().getStringArray(R.array.CmdMenu);
+		String CmdName = menuItems[menuItemIndex];
+		String MemID = MebmerList.get(info.position).get("MemberID").toString();
+		String MemName = MebmerList.get(info.position).get("Name").toString();
+
+		if ("Delete".equals(CmdName)) {
+
+			MebmerList.remove(MebmerList.get(info.position));
+			for (int i = 0; i < SaleList.size(); i++) {
+				if (MemID.equals(SaleList.get(i))) {
+					SaleList.remove(i);
+				}
+			}
+			// Call Show Data again
+			ShowAllData();
+		}
+
+		return true;
+	}
 
 }
-*/
