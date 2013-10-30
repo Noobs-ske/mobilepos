@@ -36,14 +36,23 @@
           android:text="ItemID"
           android:textAppearance="?android:attr/textAppearanceMedium" />
 
+      
+      
       <EditText
           android:id="@+id/txtMemberID"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:inputType="number"
+          android:text=""
           android:ems="10" >
           <requestFocus />
-      </EditText>	      
+      </EditText>
+
+      <Button
+          android:id="@+id/buttonScan"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Scan" />
 
 	</TableRow>
 		
