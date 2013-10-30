@@ -67,6 +67,21 @@ public class CatalogActivity extends Activity {
 			}
 		});
 		
+		// Button4(HistoryButton)
+		final Button btn_History = (Button) findViewById(R.id.button4);
+		// Perform action on click
+		btn_History.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+
+				// Open History
+				Intent newActivity = new Intent(CatalogActivity.this,
+						HistoryActivity.class);
+				startActivity(newActivity);
+
+			}
+		});
+		
+		
 		// Button5(NewsButton)
 		final Button btn_News = (Button) findViewById(R.id.button5);
 		// Perform action on click

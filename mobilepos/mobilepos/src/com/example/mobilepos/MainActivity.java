@@ -41,7 +41,25 @@ public class MainActivity extends Activity {
 
 					}
 				});
+				
+				
+				// Button4(HistoryButton)
+				final Button btn_History = (Button) findViewById(R.id.button4);
+				// Perform action on click
+				btn_History.setOnClickListener(new View.OnClickListener() {
+					public void onClick(View v) {
+
+						// Open History
+						Intent newActivity = new Intent(MainActivity.this,
+								HistoryActivity.class);
+						startActivity(newActivity);
+
+					}
+				});
 		
+				
+				
+				
 		//  Button1(Sale Button)
 		final Button btn_Sale = (Button) findViewById(R.id.button1);
 		// Perform action on click

@@ -37,6 +37,10 @@
             android:name="com.example.mobilepos.NewsActivity"
             android:label="title_activity_news"
             android:screenOrientation="portrait" />
+         <activity
+            android:name="com.example.mobilepos.HistoryActivity"
+            android:label="title_activity_history"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.mobilepos.SaleActivity"
             android:label="@string/title_activity_sale" >

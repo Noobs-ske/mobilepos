@@ -6,8 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class NewsActivity extends Activity {
-
+public class HistoryActivity extends Activity{
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -20,26 +19,12 @@ public class NewsActivity extends Activity {
 			public void onClick(View v) {
 
 				// Open Catalog
-				Intent newActivity = new Intent(NewsActivity.this,
+				Intent newActivity = new Intent(HistoryActivity.this,
 						CatalogActivity.class);
 				startActivity(newActivity);
 
 			}
 		});
-		
-		// Button4(HistoryButton)
-				final Button btn_History = (Button) findViewById(R.id.button4);
-				// Perform action on click
-				btn_History.setOnClickListener(new View.OnClickListener() {
-					public void onClick(View v) {
-
-						// Open History
-						Intent newActivity = new Intent(NewsActivity.this,
-								HistoryActivity.class);
-						startActivity(newActivity);
-
-					}
-				});
 		
 		// Button1(Sale Button)
 				final Button btn_Sale = (Button) findViewById(R.id.button1);
@@ -48,13 +33,25 @@ public class NewsActivity extends Activity {
 					public void onClick(View v) {
 
 						// Open Sale
-						Intent newActivity = new Intent(NewsActivity.this,
+						Intent newActivity = new Intent(HistoryActivity.this,
 								SaleActivity.class);
 						startActivity(newActivity);
 
 					}
 				});
 				
-				
-}
+		// Button5(NewsButton)
+				final Button btn_News = (Button) findViewById(R.id.button5);
+				// Perform action on click
+				btn_News.setOnClickListener(new View.OnClickListener() {
+					public void onClick(View v) {
+
+						// Open News
+						Intent newActivity = new Intent(HistoryActivity.this,
+								NewsActivity.class);
+						startActivity(newActivity);
+
+					}
+				});
+	}
 }
