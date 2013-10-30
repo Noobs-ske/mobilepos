@@ -34,7 +34,7 @@ public class CatalogActivity extends Activity {
 		// Call Show List All Data
 		ShowListData();
 
-		// Button1
+		// Button1(SaleButton)
 		final Button btn_Sale = (Button) findViewById(R.id.button1);
 		// Perform action on click
 		btn_Sale.setOnClickListener(new View.OnClickListener() {
@@ -52,7 +52,7 @@ public class CatalogActivity extends Activity {
 			}
 		});
 
-		// Button3
+		// Button3 (AddButton)
 
 		final Button btn_Add = (Button) findViewById(R.id.button3);
 		// Perform action on click
@@ -62,6 +62,20 @@ public class CatalogActivity extends Activity {
 				// Open Add
 				Intent newActivity = new Intent(CatalogActivity.this,
 						AddActivity.class);
+				startActivity(newActivity);
+
+			}
+		});
+		
+		// Button5(NewsButton)
+		final Button btn_News = (Button) findViewById(R.id.button5);
+		// Perform action on click
+		btn_News.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+
+				// Open News
+				Intent newActivity = new Intent(CatalogActivity.this,
+						NewsActivity.class);
 				startActivity(newActivity);
 
 			}
