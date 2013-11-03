@@ -11,7 +11,7 @@ public class NewsActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_news);
 
 		// Button2(CatalogButton)
 		final Button btn_Catalog = (Button) findViewById(R.id.button2);

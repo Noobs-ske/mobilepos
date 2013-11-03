@@ -10,7 +10,7 @@
       android:padding="5dip" >
      
      <TextView
-         android:id="@+id/textView1"
+         android:id="@+id/TotalPrice"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          android:layout_marginTop="20dp"
@@ -39,13 +39,12 @@
       
       
       <EditText
-          android:id="@+id/txtMemberID"
+          android:id="@+id/txtItemID"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:inputType="number"
           android:text=""
           android:ems="10" >
-          <requestFocus />
       </EditText>
 
       <Button
@@ -84,11 +83,33 @@
 
 	      <TextView
 	          android:id="@+id/textView4"
+	          android:text="Quantity"
+	          android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	      <EditText
+	          android:id="@+id/txtQuantity"
+	          android:layout_width="wrap_content"
+	          android:layout_height="wrap_content"
+	          android:ems="10"
+	          android:inputType="number" >
+
+	      </EditText>
+
+	</TableRow>
+
+   	<TableRow
+      android:id="@+id/tableRow5"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:padding="5dip" >
+
+	      <TextView
+	          android:id="@+id/textView5"
 	          android:text="Price"
 	          android:textAppearance="?android:attr/textAppearanceMedium" />
 	
 	      <EditText
-	          android:id="@+id/txtTel"
+	          android:id="@+id/txtPrice"
 	          android:layout_width="wrap_content"
 	          android:layout_height="wrap_content"
 	          android:ems="10"

@@ -53,9 +53,10 @@ public class UpdateActivity extends Activity {
 
 	public void ShowData(String MemID) {
 		// txtMemberID, txtName, txtTel
-		final TextView tMemberID = (TextView) findViewById(R.id.txtMemberID);
+		final TextView tItemID = (TextView) findViewById(R.id.txtItemID);
 		final EditText tName = (EditText) findViewById(R.id.txtName);
-		final EditText tTel = (EditText) findViewById(R.id.txtTel);
+		final EditText tQuantity = (EditText) findViewById(R.id.txtQuantity);
+		final EditText tPrice = (EditText) findViewById(R.id.txtPrice);
 
 		// new Class DB
 		final DBClass myDb = new DBClass(this);
@@ -63,9 +64,10 @@ public class UpdateActivity extends Activity {
 		// Show Data
 		String arrData[] = myDb.SelectData(MemID);
 		if (arrData != null) {
-			tMemberID.setText(arrData[0]);
+			tItemID.setText(arrData[0]);
 			tName.setText(arrData[1]);
-			tTel.setText(arrData[2]);
+			tQuantity.setText(arrData[2]);
+			tPrice.setText(arrData[3]);
 		}
 
 	}
@@ -74,7 +76,8 @@ public class UpdateActivity extends Activity {
 
 		// txtName, txtTel
 		final EditText tName = (EditText) findViewById(R.id.txtName);
-		final EditText tTel = (EditText) findViewById(R.id.txtTel);
+		final EditText tQuantity = (EditText) findViewById(R.id.txtQuantity);
+		final EditText tPrice = (EditText) findViewById(R.id.txtPrice);
 
 		// Dialog
 		final AlertDialog.Builder adb = new AlertDialog.Builder(this);
@@ -88,11 +91,19 @@ public class UpdateActivity extends Activity {
 			return false;
 		}
 
-		// Check Tel
-		if (tTel.getText().length() == 0) {
+		// Check Quantity
+		if (tQuantity.getText().length() == 0) {
+			ad.setMessage("Please input [Quantity] ");
+			ad.show();
+			tQuantity.requestFocus();
+			return false;
+		}
+
+		// Check Price
+		if (tPrice.getText().length() == 0) {
 			ad.setMessage("Please input [Price] ");
 			ad.show();
-			tTel.requestFocus();
+			tPrice.requestFocus();
 			return false;
 		}
 
@@ -101,7 +112,7 @@ public class UpdateActivity extends Activity {
 
 		// Save Data
 		long saveStatus = myDb.UpdateData(MemID, tName.getText().toString(),
-				tTel.getText().toString());
+				tQuantity.getText().toString(), tPrice.getText().toString());
 		if (saveStatus <= 0) {
 			ad.setMessage("Error!! ");
 			ad.show();

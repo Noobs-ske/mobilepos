@@ -1,14 +1,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@+id/linearLayout1" 
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent" >
+    android:id="@+id/linearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal" >
 
 	<TextView
-	android:id="@+id/ColMemberID" 
-		android:layout_width="0dp"
-		android:layout_height="wrap_content" 
-		android:layout_weight="1"
-		android:text="MemberID"/>
+	    android:id="@+id/ColItemID"
+	    android:layout_width="0dp"
+	    android:layout_height="wrap_content"
+	    android:layout_weight="1"
+	    android:text="ItemID" />
 
 	<TextView
 		android:id="@+id/ColName" 
@@ -18,10 +19,18 @@
 		android:text="Name"/>
 
 	<TextView
-	    android:id="@+id/ColTel"
+	    android:id="@+id/ColQuantity"
 	    android:layout_width="0dp"
 	    android:layout_height="wrap_content"
 	    android:layout_weight="1"
-	    android:text="Tel" />
+	    android:text="Quantity" />
+
+	<TextView
+	    android:id="@+id/TotalPrice"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_weight="0.89"
+	    android:text="Price"
+	    android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </LinearLayout>

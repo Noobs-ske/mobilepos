@@ -116,9 +116,9 @@ public class CatalogActivity extends Activity {
 
 		SimpleAdapter sAdap;
 		sAdap = new SimpleAdapter(CatalogActivity.this, ItemList,
-				R.layout.activity_column, new String[] { "MemberID", "Name",
-						"Tel" }, new int[] { R.id.ColMemberID, R.id.ColName,
-						R.id.ColTel });
+				R.layout.activity_column, new String[] { "ItemID", "Name",
+						"Quantity","Price" }, new int[] { R.id.ColItemID, R.id.ColName,
+						R.id.ColQuantity,R.id.TotalPrice });
 		lisView1.setAdapter(sAdap);
 		registerForContextMenu(lisView1);
 	}
@@ -144,20 +144,20 @@ public class CatalogActivity extends Activity {
 		int menuItemIndex = item.getItemId();
 		String[] menuItems = getResources().getStringArray(R.array.CmdMenu);
 		String CmdName = menuItems[menuItemIndex];
-		String MemID = ItemList.get(info.position).get("MemberID").toString();
+		String MemID = ItemList.get(info.position).get("ItemID").toString();
 		String MemName = ItemList.get(info.position).get("Name").toString();
 
 		// Check Event Command
 		if ("Purchase".equals(CmdName)) {
-			boolean chk = true;
+			boolean check = true;
 			for (int i = 0; i < PurchaseList.size(); i++) {
 				if (PurchaseList.get(i).equals(MemID)) {
-					chk = false;
+					check = false;
 					break;
 				}
 
 			}
-			if (chk)
+			if (check)
 				PurchaseList.add(MemID);
 			else {
 				Toast.makeText(CatalogActivity.this,
@@ -171,7 +171,7 @@ public class CatalogActivity extends Activity {
 			Intent newActivity = new Intent(CatalogActivity.this,
 					UpdateActivity.class);
 			newActivity.putExtra("MemID",
-					ItemList.get(info.position).get("MemberID").toString());
+					ItemList.get(info.position).get("ItemID").toString());
 			startActivity(newActivity);
 
 			// for Delete Command

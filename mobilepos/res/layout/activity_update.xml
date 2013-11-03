@@ -10,7 +10,7 @@
       android:padding="5dip" >
      
      <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/TotalPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -37,7 +37,7 @@
           android:textAppearance="?android:attr/textAppearanceMedium" />
 
       <TextView
-          android:id="@+id/txtMemberID"
+          android:id="@+id/txtItemID"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="number" />
@@ -72,18 +72,41 @@
 
 	      <TextView
 	          android:id="@+id/textView4"
-	          android:text="Price : "
+	          android:text="Quantity : "
 	          android:textAppearance="?android:attr/textAppearanceMedium" />
 	
 	      <EditText
-	          android:id="@+id/txtTel"
+	          android:id="@+id/txtQuantity"
 	          android:layout_width="wrap_content"
 	          android:layout_height="wrap_content"
-	          android:inputType="number"
-	          android:ems="10" >
-	      </EditText>	      
+	          android:ems="10"
+	          android:inputType="number" >
+
+	      </EditText>
 
 	</TableRow>
+
+   	<TableRow
+   	    android:id="@+id/tableRow5"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content" 
+	    android:padding="5dip" >
+
+   		     <TextView
+	          android:id="@+id/textView5"
+	          android:text="Price"
+	          android:textAppearance="?android:attr/textAppearanceMedium" />
+	
+	      <EditText
+	          android:id="@+id/txtPrice"
+	          android:layout_width="wrap_content"
+	          android:layout_height="wrap_content"
+	          android:ems="10"
+	          android:inputType="number|numberDecimal" >
+
+	      </EditText>	      
+   		 
+   	</TableRow>
 
    	<LinearLayout
       android:id="@+id/LinearLayout1"
@@ -103,5 +126,11 @@
      	    android:text="Cancel" />       
 
 	</LinearLayout>
+
+   	<TableRow
+   	    android:id="@+id/tableRow6"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content" >
+   	</TableRow>
 	
 </TableLayout>

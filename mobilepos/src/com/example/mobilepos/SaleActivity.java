@@ -48,7 +48,69 @@ public class SaleActivity extends Activity {
 
 			}
 		});
+		
+		// Button3(SaleButton)
+		final Button btn_Sale = (Button) findViewById(R.id.button3);
+		// Perform action on click
+		btn_Sale.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+
+				// Open History
+				Intent newActivity = new Intent(SaleActivity.this,
+						SaleActivity.class);
+				startActivity(newActivity);
+
+			}
+		});
+		
+		
+		
+		// Button2(CistoryButton)
+		final Button btn_Catalog = (Button) findViewById(R.id.button2);
+		// Perform action on click
+		btn_Catalog.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+
+				// Open History
+				Intent newActivity = new Intent(SaleActivity.this,
+						CatalogActivity.class);
+				startActivity(newActivity);
+
+			}
+		});
+		
+		
+		// Button4(HistoryButton)
+		final Button btn_History = (Button) findViewById(R.id.button4);
+		// Perform action on click
+		btn_History.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+
+				// Open History
+				Intent newActivity = new Intent(SaleActivity.this,
+						HistoryActivity.class);
+				startActivity(newActivity);
+
+			}
+		});
+		
+		
+		// Button5(NewsButton)
+		final Button btn_News = (Button) findViewById(R.id.button5);
+		// Perform action on click
+		btn_News.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+
+				// Open News
+				Intent newActivity = new Intent(SaleActivity.this,
+						NewsActivity.class);
+				startActivity(newActivity);
+
+			}
+		});
+
 	}
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -80,10 +142,11 @@ public class SaleActivity extends Activity {
 		for (int i = 0; i < SaleList.size(); i++) {
 			String arrData[] = myDb.SelectData(SaleList.get(i));
 			map = new HashMap<String, String>();
-			map.put("MemberID", arrData[0]);
+			map.put("ItemID", arrData[0]);
 			map.put("Name", arrData[1]);
-			map.put("Tel", arrData[2]);
-			total += Double.parseDouble(arrData[2]);
+			map.put("Quantity", arrData[2]);
+			map.put("Price", arrData[3]);
+			total += Double.parseDouble(arrData[2])*Double.parseDouble(arrData[3]) ;
 			MyArrList.add(map);
 		}
 		ItemList = MyArrList;
@@ -92,9 +155,9 @@ public class SaleActivity extends Activity {
 
 		SimpleAdapter sAdap;
 		sAdap = new SimpleAdapter(SaleActivity.this, ItemList,
-				R.layout.activity_salecolumn, new String[] { "MemberID",
-						"Name", "Tel" }, new int[] { R.id.ItemID, R.id.Name,
-						R.id.Price });
+				R.layout.activity_salecolumn, new String[] { "ItemID",
+						"Name", "Quantity","Price" }, new int[] { R.id.ColItemID, R.id.ColName,
+						R.id.ColQuantity ,R.id.ColPrice });
 		lisView1.setAdapter(sAdap);
 		registerForContextMenu(lisView1);
 
