@@ -24,6 +24,7 @@ public class MainActivity extends Activity {
 				Intent newActivity = new Intent(MainActivity.this,
 						SaleActivity.class);
 				startActivity(newActivity);
+				finish();
 
 			}
 		});
@@ -38,7 +39,7 @@ public class MainActivity extends Activity {
 				Intent newActivity = new Intent(MainActivity.this,
 						CatalogActivity.class);
 				startActivity(newActivity);
-
+				finish();
 			}
 		});
 
@@ -53,7 +54,7 @@ public class MainActivity extends Activity {
 				Intent newActivity = new Intent(MainActivity.this,
 						HistoryActivity.class);
 				startActivity(newActivity);
-
+				finish();
 			}
 		});
 
@@ -68,7 +69,7 @@ public class MainActivity extends Activity {
 				Intent newActivity = new Intent(MainActivity.this,
 						NewsActivity.class);
 				startActivity(newActivity);
-
+				finish();
 			}
 		});
 

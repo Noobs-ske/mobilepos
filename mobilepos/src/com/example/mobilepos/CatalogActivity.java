@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -13,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
@@ -20,13 +23,14 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class CatalogActivity extends Activity {
 
-	//list of item in catalog
+	// list of item in catalog
 	ArrayList<HashMap<String, String>> ItemList;
-	
-	//list of purchase's item in catalog
-	ArrayList<String> PurchaseList = new ArrayList<String>();
 
+	// list of purchase's item in catalog
+	ArrayList<String> PurchaseList = new ArrayList<String>();
 	
+	private int PurchaseQuantity = 0;
+
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_catalog);
@@ -48,6 +52,7 @@ public class CatalogActivity extends Activity {
 						PurchaseList);
 				PurchaseList = new ArrayList<String>();
 				startActivity(newActivity);
+				finish();
 
 			}
 		});
@@ -66,7 +71,7 @@ public class CatalogActivity extends Activity {
 
 			}
 		});
-		
+
 		// Button4(HistoryButton)
 		final Button btn_History = (Button) findViewById(R.id.button4);
 		// Perform action on click
@@ -80,8 +85,7 @@ public class CatalogActivity extends Activity {
 
 			}
 		});
-		
-		
+
 		// Button5(NewsButton)
 		final Button btn_News = (Button) findViewById(R.id.button5);
 		// Perform action on click
@@ -97,8 +101,6 @@ public class CatalogActivity extends Activity {
 		});
 
 	}
-
-	
 
 	// [Might need an injection get current List method to use in
 	// AddSaleItemActivity]
@@ -117,8 +119,8 @@ public class CatalogActivity extends Activity {
 		SimpleAdapter sAdap;
 		sAdap = new SimpleAdapter(CatalogActivity.this, ItemList,
 				R.layout.activity_column, new String[] { "ItemID", "Name",
-						"Quantity","Price" }, new int[] { R.id.ColItemID, R.id.ColName,
-						R.id.ColQuantity,R.id.TotalPrice });
+						"Quantity", "Price" }, new int[] { R.id.ColItemID,
+						R.id.ColName, R.id.ColQuantity, R.id.TotalPrice });
 		lisView1.setAdapter(sAdap);
 		registerForContextMenu(lisView1);
 	}
@@ -126,7 +128,7 @@ public class CatalogActivity extends Activity {
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
-		// if (v.getId()==R.id.list) {
+
 		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
 		menu.setHeaderTitle("Command for : "
 				+ ItemList.get(info.position).get("Name").toString());
@@ -134,7 +136,7 @@ public class CatalogActivity extends Activity {
 		for (int i = 0; i < menuItems.length; i++) {
 			menu.add(Menu.NONE, i, i, menuItems[i]);
 		}
-		// }
+
 	}
 
 	@Override
@@ -145,7 +147,7 @@ public class CatalogActivity extends Activity {
 		String[] menuItems = getResources().getStringArray(R.array.CmdMenu);
 		String CmdName = menuItems[menuItemIndex];
 		String MemID = ItemList.get(info.position).get("ItemID").toString();
-		String MemName = ItemList.get(info.position).get("Name").toString();
+		String MemQuantity = ItemList.get(info.position).get("Quantity").toString();
 
 		// Check Event Command
 		if ("Purchase".equals(CmdName)) {
@@ -157,8 +159,37 @@ public class CatalogActivity extends Activity {
 				}
 
 			}
-			if (check)
+			if (check){
 				PurchaseList.add(MemID);
+
+		        AlertDialog.Builder alert = new AlertDialog.Builder(this);  
+
+		        alert.setTitle("Quantity");  
+		        alert.setMessage("Please input the number");  
+
+		        // Set an EditText view to get user input   
+		        final EditText inputQuantity = new EditText(this);  
+		        alert.setView(inputQuantity);  
+
+		        alert.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {  
+		        public void onClick(DialogInterface dialog, int whichButton) {  
+		        	try{
+		            PurchaseQuantity = Integer.parseInt(inputQuantity.getText().toString()); 
+		        	}
+		        	catch(Exception e){
+		        		Toast.makeText(getBaseContext(),
+								"INPUT THE NUMBER MORON !!",
+								Toast.LENGTH_LONG).show();
+		        	}
+		          }  
+		        }); 
+		        
+		        alert.setNegativeButton("Cancel", null );
+
+		        alert.show();
+				
+		        
+			}
 			else {
 				Toast.makeText(CatalogActivity.this,
 						"You're already Purchase.", Toast.LENGTH_LONG).show();
