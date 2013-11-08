@@ -6,12 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class NewsActivity extends Activity {
-
+public class CatalogueListActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_news);
+		setContentView(R.layout.activity_history);
 
 		// Button2(CatalogButton)
 		final Button btn_Catalog = (Button) findViewById(R.id.button2);
@@ -20,26 +19,12 @@ public class NewsActivity extends Activity {
 			public void onClick(View v) {
 
 				// Open Catalog
-				Intent newActivity = new Intent(NewsActivity.this,
+				Intent newActivity = new Intent(CatalogueListActivity.this,
 						CatalogActivity.class);
 				startActivity(newActivity);
 
 			}
 		});
-		
-		// Button4(HistoryButton)
-				final Button btn_History = (Button) findViewById(R.id.button4);
-				// Perform action on click
-				btn_History.setOnClickListener(new View.OnClickListener() {
-					public void onClick(View v) {
-
-						// Open History
-						Intent newActivity = new Intent(NewsActivity.this,
-								HistoryActivity.class);
-						startActivity(newActivity);
-
-					}
-				});
 		
 		// Button1(Sale Button)
 				final Button btn_Sale = (Button) findViewById(R.id.button1);
@@ -48,13 +33,25 @@ public class NewsActivity extends Activity {
 					public void onClick(View v) {
 
 						// Open Sale
-						Intent newActivity = new Intent(NewsActivity.this,
+						Intent newActivity = new Intent(CatalogueListActivity.this,
 								SaleActivity.class);
 						startActivity(newActivity);
 
 					}
 				});
 				
-				
-}
+		// Button5(cataloguelist)
+				final Button btn_cataloguelist = (Button) findViewById(R.id.button5);
+				// Perform action on click
+				btn_cataloguelist.setOnClickListener(new View.OnClickListener() {
+					public void onClick(View v) {
+
+						// Open cataloguelist
+						Intent newActivity = new Intent(CatalogueListActivity.this,
+								CatalogueListActivity.class);
+						startActivity(newActivity);
+
+					}
+				});
+	}
 }

@@ -59,15 +59,15 @@ public class MainActivity extends Activity {
 		});
 
 		
-		// Button5(NewsButton)
-		final Button btn_News = (Button) findViewById(R.id.button5);
+		// Button5(catalogue)
+		final Button btn_cataloguelist = (Button) findViewById(R.id.button5);
 		// Perform action on click
-		btn_News.setOnClickListener(new View.OnClickListener() {
+		btn_cataloguelist.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 
-				// Open News
+				// Open catalogue
 				Intent newActivity = new Intent(MainActivity.this,
-						NewsActivity.class);
+						CatalogueListActivity.class);
 				startActivity(newActivity);
 				finish();
 			}

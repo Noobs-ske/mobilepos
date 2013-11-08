@@ -95,15 +95,15 @@ public class SaleActivity extends Activity {
 		});
 		
 		
-		// Button5(NewsButton)
-		final Button btn_News = (Button) findViewById(R.id.button5);
+		// Button5(cataloguelist)
+		final Button btn_cataloguelist = (Button) findViewById(R.id.button5);
 		// Perform action on click
-		btn_News.setOnClickListener(new View.OnClickListener() {
+		btn_cataloguelist.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 
-				// Open News
+				// Open cataloguelist
 				Intent newActivity = new Intent(SaleActivity.this,
-						NewsActivity.class);
+						CatalogueListActivity.class);
 				startActivity(newActivity);
 
 			}
@@ -124,11 +124,11 @@ public class SaleActivity extends Activity {
 	 * SaleList; }
 	 */
 	public void Checkout() {
-		DBClass myDb = new DBClass(this);
+//		DBClass myDb = new DBClass(this);
 
-		for (int i = 0; i < SaleList.size(); i++) {
-			myDb.DeleteData(SaleList.get(i));
-		}
+//		for (int i = 0; i < SaleList.size(); i++) {
+//			myDb.DeleteData(SaleList.get(i));
+//		}
 		SaleList = null;
 
 	}

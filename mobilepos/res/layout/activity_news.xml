@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:text="Catalog" />
+        android:text="Stock" />
 
     <Button
         android:id="@+id/button1"
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:text="Settings" />
+        android:text="Setup" />
 
     <Button
         android:id="@+id/button5"
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/button6"
-        android:text="News" />
+        android:text="Catalog" />
 
     <Button
         android:id="@+id/button4"
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/button2"
-        android:text="History" />
+        android:text="Report" />
 
     
     
@@ -54,7 +54,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_span="1"
                 android:gravity="center"
-                android:text="News/Promotion"
+                android:text="Catalog"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

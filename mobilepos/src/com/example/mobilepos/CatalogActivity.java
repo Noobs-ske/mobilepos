@@ -23,10 +23,10 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class CatalogActivity extends Activity {
 
-	// list of item in catalog
+	// list of item in Inventory
 	ArrayList<HashMap<String, String>> ItemList;
 
-	// list of purchase's item in catalog
+	// list of purchase's item in Inventory
 	ArrayList<String> PurchaseList = new ArrayList<String>();
 	
 	private int PurchaseQuantity = 0;
@@ -86,15 +86,15 @@ public class CatalogActivity extends Activity {
 			}
 		});
 
-		// Button5(NewsButton)
-		final Button btn_News = (Button) findViewById(R.id.button5);
+		// Button5(cataloguelist)
+		final Button btn_cataloguelist = (Button) findViewById(R.id.button5);
 		// Perform action on click
-		btn_News.setOnClickListener(new View.OnClickListener() {
+		btn_cataloguelist.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 
-				// Open News
+				// Open cataloguelist
 				Intent newActivity = new Intent(CatalogActivity.this,
-						NewsActivity.class);
+						CatalogueListActivity.class);
 				startActivity(newActivity);
 
 			}
@@ -141,14 +141,16 @@ public class CatalogActivity extends Activity {
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
+		final DBClass myDb = new DBClass(this);
 		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item
 				.getMenuInfo();
 		int menuItemIndex = item.getItemId();
 		String[] menuItems = getResources().getStringArray(R.array.CmdMenu);
 		String CmdName = menuItems[menuItemIndex];
-		String MemID = ItemList.get(info.position).get("ItemID").toString();
-		String MemQuantity = ItemList.get(info.position).get("Quantity").toString();
-
+		final String MemID = ItemList.get(info.position).get("ItemID").toString();
+		final String MemName = ItemList.get(info.position).get("Name").toString();
+		final String MemQuantity = ItemList.get(info.position).get("Quantity").toString();
+		final String MemPrice = ItemList.get(info.position).get("Price").toString();
 		// Check Event Command
 		if ("Purchase".equals(CmdName)) {
 			boolean check = true;
@@ -173,8 +175,22 @@ public class CatalogActivity extends Activity {
 
 		        alert.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {  
 		        public void onClick(DialogInterface dialog, int whichButton) {  
+		        	
+		        	
 		        	try{
-		            PurchaseQuantity = Integer.parseInt(inputQuantity.getText().toString()); 
+		            PurchaseQuantity = Integer.parseInt(inputQuantity.getText().toString());
+		            int n = Integer.parseInt(MemQuantity)- PurchaseQuantity;
+		            double m = n*(Double.parseDouble(MemPrice)/Double.parseDouble(MemQuantity)) ;
+		            String n2 = n+"";
+		            String m2 = m+"";
+		            if(Integer.parseInt(n2) <= 0)
+		            {
+		            	m2 = "0";
+		            }
+		            myDb.UpdateData(MemID, MemName, n2, m2);
+		            
+		            
+		            ShowListData();
 		        	}
 		        	catch(Exception e){
 		        		Toast.makeText(getBaseContext(),
@@ -208,7 +224,7 @@ public class CatalogActivity extends Activity {
 			// for Delete Command
 		} else if ("Delete".equals(CmdName)) {
 
-			DBClass myDb = new DBClass(this);
+//			DBClass myDb = new DBClass(this);
 
 			long flg = myDb.DeleteData(MemID);
 			if (flg > 0) {
@@ -224,6 +240,7 @@ public class CatalogActivity extends Activity {
 		}
 
 		return true;
+	
 	}
 
 }

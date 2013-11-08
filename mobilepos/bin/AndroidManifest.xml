@@ -34,7 +34,7 @@
             android:label="@string/title_activity_main"
             android:screenOrientation="portrait" />
          <activity
-            android:name="com.example.mobilepos.NewsActivity"
+            android:name="com.example.mobilepos.CatalogueListActivity"
             android:label="title_activity_news"
             android:screenOrientation="portrait" />
          <activity
@@ -43,7 +43,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="com.example.mobilepos.SaleActivity"
-            android:label="@string/title_activity_sale" >
+            android:label="@string/title_activity_sale" 
+            android:screenOrientation="portrait"  >
         </activity>
     </application>
 
