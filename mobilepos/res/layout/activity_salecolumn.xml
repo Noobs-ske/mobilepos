@@ -2,8 +2,7 @@
 	android:id="@+id/linearLayout1" 
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent" >
-
-    <TextView
+	<TextView
 	    android:id="@+id/ColItemID"
 	    android:layout_width="0dp"
 	    android:layout_height="wrap_content"
@@ -25,11 +24,12 @@
 	    android:text="Quantity" />
 
 	<TextView
-	    android:id="@+id/ColPrice"
+	    android:id="@+id/TotalPrice"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:layout_weight="0.89"
 	    android:text="Price"
 	    android:textAppearance="?android:attr/textAppearanceSmall" />
+
 
 </LinearLayout>

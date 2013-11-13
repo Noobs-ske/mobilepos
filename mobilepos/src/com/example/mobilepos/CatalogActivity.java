@@ -28,7 +28,7 @@ public class CatalogActivity extends Activity {
 
 	// list of purchase's item in Inventory
 	ArrayList<String> PurchaseList = new ArrayList<String>();
-	
+
 	private int PurchaseQuantity = 0;
 
 	public void onCreate(Bundle savedInstanceState) {
@@ -44,8 +44,7 @@ public class CatalogActivity extends Activity {
 		btn_Sale.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 
-				// [Open Sale -- Might be best to change MainActivity to
-				// SaleActivity]
+				
 				Intent newActivity = new Intent(CatalogActivity.this,
 						SaleActivity.class);
 				newActivity.putStringArrayListExtra("PurchaseList",
@@ -147,10 +146,14 @@ public class CatalogActivity extends Activity {
 		int menuItemIndex = item.getItemId();
 		String[] menuItems = getResources().getStringArray(R.array.CmdMenu);
 		String CmdName = menuItems[menuItemIndex];
-		final String MemID = ItemList.get(info.position).get("ItemID").toString();
-		final String MemName = ItemList.get(info.position).get("Name").toString();
-		final String MemQuantity = ItemList.get(info.position).get("Quantity").toString();
-		final String MemPrice = ItemList.get(info.position).get("Price").toString();
+		final String MemID = ItemList.get(info.position).get("ItemID")
+				.toString();
+		final String MemName = ItemList.get(info.position).get("Name")
+				.toString();
+		final String MemQuantity = ItemList.get(info.position).get("Quantity")
+				.toString();
+		final String MemPrice = ItemList.get(info.position).get("Price")
+				.toString();
 		// Check Event Command
 		if ("Purchase".equals(CmdName)) {
 			boolean check = true;
@@ -161,52 +164,58 @@ public class CatalogActivity extends Activity {
 				}
 
 			}
-			if (check){
+			if (check) {
 				PurchaseList.add(MemID);
 
-		        AlertDialog.Builder alert = new AlertDialog.Builder(this);  
+				AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
-		        alert.setTitle("Quantity");  
-		        alert.setMessage("Please input the number");  
+				alert.setTitle("Quantity");
+				alert.setMessage("Please input the number");
 
-		        // Set an EditText view to get user input   
-		        final EditText inputQuantity = new EditText(this);  
-		        alert.setView(inputQuantity);  
+				// Set an EditText view to get user input
+				final EditText inputQuantity = new EditText(this);
+				alert.setView(inputQuantity);
 
-		        alert.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {  
-		        public void onClick(DialogInterface dialog, int whichButton) {  
-		        	
-		        	
-		        	try{
-		            PurchaseQuantity = Integer.parseInt(inputQuantity.getText().toString());
-		            int n = Integer.parseInt(MemQuantity)- PurchaseQuantity;
-		            double m = n*(Double.parseDouble(MemPrice)/Double.parseDouble(MemQuantity)) ;
-		            String n2 = n+"";
-		            String m2 = m+"";
-		            if(Integer.parseInt(n2) <= 0)
-		            {
-		            	m2 = "0";
-		            }
-		            myDb.UpdateData(MemID, MemName, n2, m2);
-		            
-		            
-		            ShowListData();
-		        	}
-		        	catch(Exception e){
-		        		Toast.makeText(getBaseContext(),
-								"INPUT THE NUMBER MORON !!",
-								Toast.LENGTH_LONG).show();
-		        	}
-		          }  
-		        }); 
-		        
-		        alert.setNegativeButton("Cancel", null );
+				alert.setPositiveButton("Confirm",
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,
+									int whichButton) {
 
-		        alert.show();
-				
-		        
-			}
-			else {
+								try {
+									PurchaseQuantity = Integer
+											.parseInt(inputQuantity.getText()
+													.toString());
+									int n = Integer.parseInt(MemQuantity)
+											- PurchaseQuantity;
+									// double m =
+									// n*(Double.parseDouble(MemPrice)/Double.parseDouble(MemQuantity))
+									// ;
+									String n2 = n + "";
+									// String m2 = m+"";
+									if (Integer.parseInt(n2) <= 0) {
+										n2 = MemQuantity;
+										Toast.makeText(getBaseContext(),
+												"Can not Purchase",
+												Toast.LENGTH_LONG).show();
+									}
+									myDb.UpdateData(MemID, MemName, n2,
+											MemPrice);
+
+									ShowListData();
+
+								} catch (Exception e) {
+									Toast.makeText(getBaseContext(),
+											"INPUT THE NUMBER MORON !!",
+											Toast.LENGTH_LONG).show();
+								}
+							}
+						});
+
+				alert.setNegativeButton("Cancel", null);
+
+				alert.show();
+
+			} else {
 				Toast.makeText(CatalogActivity.this,
 						"You're already Purchase.", Toast.LENGTH_LONG).show();
 			}
@@ -224,7 +233,7 @@ public class CatalogActivity extends Activity {
 			// for Delete Command
 		} else if ("Delete".equals(CmdName)) {
 
-//			DBClass myDb = new DBClass(this);
+			// DBClass myDb = new DBClass(this);
 
 			long flg = myDb.DeleteData(MemID);
 			if (flg > 0) {
@@ -240,7 +249,7 @@ public class CatalogActivity extends Activity {
 		}
 
 		return true;
-	
+
 	}
 
 }

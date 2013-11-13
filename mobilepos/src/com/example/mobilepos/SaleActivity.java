@@ -65,7 +65,7 @@ public class SaleActivity extends Activity {
 		
 		
 		
-		// Button2(CistoryButton)
+		// Button2(CatalogButton)
 		final Button btn_Catalog = (Button) findViewById(R.id.button2);
 		// Perform action on click
 		btn_Catalog.setOnClickListener(new View.OnClickListener() {
