@@ -179,15 +179,24 @@ public class CatalogActivity extends Activity {
 		        	
 		        	try{
 		            PurchaseQuantity = Integer.parseInt(inputQuantity.getText().toString());
+		           
 		            int n = Integer.parseInt(MemQuantity)- PurchaseQuantity;
-		            double m = n*(Double.parseDouble(MemPrice)/Double.parseDouble(MemQuantity)) ;
-		            String n2 = n+"";
-		            String m2 = m+"";
-		            if(Integer.parseInt(n2) <= 0)
+		        //    double m = n*(Double.parseDouble(MemPrice)/Double.parseDouble(MemQuantity)) ;
+		//           String n2 = n+"";
+		        //    String price = m+"";
+		            if(PurchaseQuantity > Integer.parseInt(MemQuantity))
 		            {
-		            	m2 = "0";
+		            	Toast.makeText(getBaseContext(),
+								"Not enough item in stock",
+								Toast.LENGTH_LONG).show();
 		            }
-		            myDb.UpdateData(MemID, MemName, n2, m2);
+		            else           myDb.reduceQuantity(MemID, MemName, Integer.parseInt(MemQuantity), PurchaseQuantity, MemPrice);
+		
+		//            if(Integer.parseInt(n2) <= 0)
+		//            {
+		//           	m2 = "0";
+		//            }
+		//            myDb.UpdateData(MemID, MemName, n2, m2);
 		            
 		            
 		            ShowListData();

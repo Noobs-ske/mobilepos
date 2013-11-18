@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+
 public class DBClass extends SQLiteOpenHelper {
 
 	// Database Version
@@ -227,7 +228,14 @@ public class DBClass extends SQLiteOpenHelper {
 		onCreate(db);
 	}
 
-	
+	public void reduceQuantity(String ID ,String name , int current , int purchase, String price)
+	{
+		int currentquan = current;
+		int purchasequan = purchase;
+		int left = currentquan - purchasequan;
+		String left2 = left+"";
+		UpdateData(ID, name, left2, price);
+	}
 
 	
 
